@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title id="pgtitle">ADS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fontawesone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+        <nav class="navbar navbar-default" id="navbarr">
+                <div class="container-fluid ">
+                    <div class="navbar-header  ">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+                            <img src="\src\images\olxlogo.png" alt="OLX" height="30px" width="30px" style="display:inline;"></img> Pakistan's Largest Marketplace</a>
+                    </div>
+                    <div class="collapse navbar-collapse " id="myNavbar">
+                        <div id="featurebtn" class="featurebtn">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="adlist.html?myads">Your Ads</a>
+                                </li>
+                                <li>
+                                    <a href="adlist.html?favads">Favourite Ad</a>
+                                </li>
+                                <li>
+                                    <a href="recentchat.html">Recent Chat</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" id="myaccount" type="button" data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-user"></span> My Account
+                                </a>
+                                <!-- Modal -->
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+        
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" id="modal-title" style="text-align:center">LOGIN</h4>
+                                                <div class=" " id="login-div">
+                                                    <input class="form-control margne" id="email1" type="text" placeholder="email">
+                                                    <input class="form-control margne" id="pass1" type="Password" placeholder="password">
+                                                    <button type="button" class="btn btn-default " onClick="login()">Login</button>
+                                                    <a href="javscript:void(0);" onclick="signupformShow()">New user? Register here</a>
+        
+                                                </div>
+                                                <div class=" " style="display:none" id="signin-div">
+                                                    <input class="form-control margne " id="nametext" type="text" placeholder="name">
+                                                    <input class="form-control margne" id="email" type="text" placeholder="email">
+                                                    <input class="form-control margne" id="pass" type="Password" placeholder="password">
+                                                    <button type="button" class="btn btn-default" onClick="Signup()">Signup</button>
+                                                    <a href="javscript:void(0);" onclick="loginformShow()">Already have account? login here</a>
+        
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="contain">
+                                                    <label style="text-align:center; color:red" id="modalerror"> </label>
+                                                </div>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                        <!-- Modal content-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javscript:void(0);" onclick="logout()" id="logout-btn">
+                                    <span class="glyphicon glyphicon-log-in"></span> LogOut</a>
+                            </li>
+                            <li>
+                                <a href="adpost.html?">
+                                    <span class="glyphicon glyphicon-log-in"></span> Post Ad</a>
+                            </li>
+        
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id="catogeryAlert" class="alert alert-danger" style="display: none">
+                    <strong>Note:</strong> Select Any Catogery First
+                </div>
+            <!-- hamza search  -->
+            <div class="center-content form-div">
+                <form class="form-inline" id="serach-form">
+                    <div class="form-group">
+                        <select id="ad-city" name="city" class="form-control" type="text">
+                            <option>All Pakistan</option>
+                            <optgroup label="Popular Cities">
+                                <option selected="" style="display:none;color:#eee;">All Pakistan</option>
+                                <option>Abbottabad</option>
+                                <option>Lahore</option>
+                                <option>Faisalabad</option>
+                                <option>Multan</option>
+                                <option>Gujranwala</option>
+                                <option>Peshawar</option>
+                                <option>Gujrat</option>
+                                <option>Quetta</option>
+                                <option>Hyderabad</option>
+                                <option>Rawalpindi</option>
+                                <option>Islamabad</option>
+                                <option>Sargodha</option>
+                                <option>Karachi</option>
+                                <option>Sialkot</option>
+                            </optgroup>
+                            <optgroup label="More Cities">
+                            </optgroup>
+                            <optgroup label="Sindh">
+                                <option>Badin</option>
+                                <option> Dadu</option>
+                                <option> Ghotki</option>
+                                <option> Hala</option>
+                                <option> Hyderabad</option>
+                                <option> Jacobabad</option>
+                                <option> Jamshoro</option>
+                                <option> Karachi</option>
+                                <option> Khairpur</option>
+                                <option> Larkana</option>
+                                <option> Mirpur Khas</option>
+                                <option> Mithi</option>
+                                <option> Nawabshah</option>
+                                <option> Ratodero</option>
+                                <option> Sanghar</option>
+                                <option> Shikarpur</option>
+                                <option> Sukkar</option>
+                                <option> Sukkur</option>
+                                <option> Tando Adam</option>
+                                <option> Thatta</option>
+                            </optgroup>
+                            <optgroup label="Punjab">
+                                <option>Ahmadpur East</option>
+                                <option>Arifwala</option>
+                                <option>Attock</option>
+                                <option>Bahawalnagar</option>
+                                <option>Bahawalpur</option>
+                                <option>Bhakkar</option>
+                                <option>Burewala</option>
+                                <option>Chakwal</option>
+                                <option>Chichawatni</option>
+                                <option>Chiniot</option>
+                                <option>Chishtian Mandi</option>
+                                <option>Daska</option>
+                                <option>Dera Ghazi Khan</option>
+                                <option>Faisalabad</option>
+                                <option>Gojra</option>
+                                <option>Gujar Khan</option>
+                                <option>Gujranwala</option>
+                                <option>Gujrat</option>
+                                <option>Hafizabad</option>
+                                <option>Hasan Abdal</option>
+                                <option>Hasilpur</option>
+                                <option>Haveli lakha</option>
+                                <option>Jaranwala</option>
+                                <option>Jhang Sadar</option>
+                                <option>Jhelum</option>
+                                <option>Kamoke</option>
+                                <option>Kasur</option>
+                                <option>Khanewal</option>
+                                <option>Khanpur</option>
+                                <option>Khushab</option>
+                                <option>Kot Addu</option>
+                                <option>Kotli</option>
+                                <option>Lahore</option>
+                                <option>Layyah</option>
+                                <option>Mailsi</option>
+                                <option>Mandi Bahauddin</option>
+                                <option>Mian Chunnu</option>
+                                <option>Mianwali</option>
+                                <option>Multan</option>
+                                <option>Muridike</option>
+                                <option>Murree</option>
+                                <option>Muzaffargarh</option>
+                                <option>Narowal</option>
+                                <option>Okara</option>
+                                <option>Pakpattan</option>
+                                <option>Pindi Bhattian</option>
+                                <option>Pirmahal</option>
+                                <option>Rahimyar Khan</option>
+                                <option>Rajanpur</option>
+                                <option>Rawalpindi</option>
+                                <option>Sadiqabad</option>
+                                <option>Safdar Abad</option>
+                                <option>Sahiwal</option>
+                                <option>Sargodha</option>
+                                <option>Shakargarh</option>
+                                <option>Sheikhüpura</option>
+                                <option>Sialkot</option>
+                                <option>Sohawa</option>
+                                <option>Talagang</option>
+                                <option>Toba Tek singh</option>
+                                <option>Vehari</option>
+                                <option>Wah</option>
+                            </optgroup>
+                            <optgroup label="Balochistan">
+                                <option>Bela</option>
+                                <option>Gwadar</option>
+                                <option>Jiwani</option>
+                                <option>Kalat</option>
+                                <option>Khuzdar</option>
+                                <option>Lasbela</option>
+                                <option>Loralai</option>
+                                <option>Ormara</option>
+                                <option>Pasni</option>
+                                <option>Quetta</option>
+                            </optgroup>
+                            <optgroup label="Khyber Pakhtunkhwa">
+                                <option>Abbottabad</option>
+                                <option>Bannu</option>
+                                <option>Batagram</option>
+                                <option>Buner</option>
+                                <option>Charsadda</option>
+                                <option>Chitral</option>
+                                <option>Darra Adam Khel</option>
+                                <option>Dera Ismail Khan</option>
+                                <option>Hangu</option>
+                                <option>Haripur</option>
+                                <option>Karak</option>
+                                <option>Kohat</option>
+                                <option>Kohistan</option>
+                                <option>Lakki Marwat</option>
+                                <option>Lower Dir</option>
+                                <option>Malakand</option>
+                                <option>Mansehra</option>
+                                <option>Mardan</option>
+                                <option>Mingaora</option>
+                                <option>Nowshera</option>
+                                <option>Peshawar</option>
+                                <option>Shangla</option>
+                                <option>Swabi</option>
+                                <option>Swat</option>
+                                <option>Tank</option>
+                                <option>Upper Dir</option>
+                            </optgroup>
+                            <optgroup label="Azad Kashmir">
+                                <option>Bagh</option>
+                                <option>Bhimber</option>
+                                <option>Mirpur</option>
+                                <option>Muzaffarabad</option>
+                                <option>Pallandri</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <!-- city drop down -->
+                    <div class="form-group">
+                        <div class="dropdown ">
+    
+                            <select id="ad-category" name="city" class="form-control" type="text">
+                                <option>Select Category</option>
+                                <option selected="" style="display:none;color:#eee;">Select Category</option>
+                                <option>Property For Sale</option>
+                                <option>Property For Rent</option>
+                                <option>Vehicles</option>
+                                <option>Bikes</option>
+                                <option>Electronics</option>
+                                <option>Home Appliances</option>
+                                <option>Mobiles</option>
+                                <option>Jobs</option>
+                                <option>Services</option>
+                                <option>Insdustrial Material</option>
+                                <option>Furniture</option>
+                                <option>Animals</option>
+                                <option>Fashion and beauty</option>
+                                <option>Books Sports Hobbies</option>
+                                <option>Kids</option>
+                            </select>
+                            <!-- <button id="dropdown-catogory-btn" class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Select Catogory 
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" id="dropdown-catogory">
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Property For Sale</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Property For Rent</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Vehicles</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Bikes</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Electronics</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Home Appliances</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Mobiles</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Jobs</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Services</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Insdustrial Material</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Furniture</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Animals</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Books Sports Hobbies</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Fashion and beauty</a>
+                                    </li>
+                                    <li>
+                                        <a href="javscript:void(0);" onclick="catogoryselect(this)">Kids</a>
+                                    </li>
+                                </ul> -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="keyword" placeholder="Search for Ads Near You">
+                        <button class="btn btn-info" type="button" onclick="searchbtn()">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                       
+                    </div>
+                </form>
+                
+            </div>
+    
+     
+    <div class="container">
+        <div class="container-fluid">
+            <h1 id="funccheck"></h1>
+
+            <h4 id="resultUpdate"></h4>
+
+            <div id="loader">
+
+            </div>
+
+
+
+            <div id="maincontainer0" class="container hidediv">
+                <div class="row">
+                    <div id="div1" class="col-sm-4">
+                        <div id="div1onclick" class="panel panel-primary">
+                            <div id="div1heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div1img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div1footer" class="panel-footer">
+                                <!-- <br>
+                                <i id="div1i" class="favdiv glyphicon glyphicon-heart" ></i> -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div2" class="col-sm-4">
+                        <div id="div2onclick" class="panel panel-primary">
+                            <div id="div2heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div2img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div2footer" class="panel-footer">
+                                <br>
+                                <i id="div2i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div3" class="col-sm-4">
+                        <div id="div3onclick" class="panel panel-primary">
+                            <div id="div3heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div3img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div3footer" class="panel-footer">
+                                <br>
+                                <i id="div3i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div4" class="col-sm-4">
+                        <div id="div4onclick" class="panel panel-primary">
+                            <div id="div4heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div4img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div4footer" class="panel-footer">
+                                <br>
+                                <i id="div4i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div5" class="col-sm-4">
+                        <div id="div5onclick" class="panel panel-primary">
+                            <div id="div5heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div5img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div5footer" class="panel-footer">
+                                <br>
+                                <i id="div5i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div6" class="col-sm-4">
+                        <div id="div6onclick" class="panel panel-primary">
+                            <div id="div6heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div6img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div6footer" class="panel-footer">
+                                <br>
+                                <i id="div6i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div7" class="col-sm-4">
+                        <div id="div7onclick" class="panel panel-primary">
+                            <div id="div7heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div7img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div7footer" class="panel-footer">
+                                <br>
+                                <i id="div7i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div8" class="col-sm-4">
+                        <div id="div8onclick" class="panel panel-primary">
+                            <div id="div8heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div8img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div8footer" class="panel-footer">
+                                <br>
+                                <i id="div8i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div9" class="col-sm-4">
+                        <div id="div9onclick" class="panel panel-primary">
+                            <div id="div9heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div9img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div9footer" class="panel-footer">
+                                <br>
+                                <i id="div9i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="div10" class="col-sm-4">
+                        <div id="div10onclick" class="panel panel-primary">
+                            <div id="div10heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div10img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div10footer" class="panel-footer">
+                                <br>
+                                <i id="div10i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div11" class="col-sm-4">
+                        <div id="div11onclick" class="panel panel-primary">
+                            <div id="div11heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div11img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div11footer" class="panel-footer">
+                                <br>
+                                <i id="div11i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="div12" class="col-sm-4">
+                        <div id="div12onclick" class="panel panel-primary">
+                            <div id="div12heading" class="panel-heading"></div>
+                            <div class="panel-body">
+                                <img id="div12img" class="img-responsive centerimages" style="height: 175px;" alt="Image" src="">
+                            </div>
+                            <div id="div12footer" class="panel-footer">
+                                <br>
+                                <i id="div12i" class="favdiv glyphicon glyphicon-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="adcontrollers " class="container ">
+
+            </div>
+        </div>
+        <br>
+        <br>
+
+    </div>
+
+    </div>
+    <!-- footer  -->
+    <div class="container-fluid foot footend " id="footeradlist">
+        <div class="center-content ">
+            <ul class="main-ul ">
+                <ul class="sub-ul ">
+                    <li>
+                        <img src="\src\images\olxlogo.png " alt="OLX " height="100px " width="100px ">
+                    </li>
+                    <li>
+                        <br>
+                    </li>
+                </ul>
+                <li>
+                    <ul class="sub-ul ">
+                        <li>
+                            <a href=" ">Locations Map</a>
+                        </li>
+                        <li>
+                            <a href=" ">Popular Serches</a>
+                        </li>
+                        <li>
+                            <a href=" ">Archive</a>
+                        </li>
+                        <li>
+                            <a href=" ">Sitemap</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul ">
+                        <li>
+                            <a href=" ">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href=" ">Help / Contact us</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul ">
+                        <li>
+                            <a href=" ">Who are we</a>
+                        </li>
+                        <li>
+                            <a href=" ">Join OLX</a>
+                        </li>
+                        <li>
+                            <a href=" ">Happy OLXer</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul ">
+                        <li>Contact US</li>
+                        <li>
+                            <a href=" ">Help@safh</a>
+                        </li>
+                        <li>
+                            <a href=" ">03032159234</a>
+                        </li>
+                        <li>
+                            <a href=" ">Bussiness Packages</a>
+                        </li>
+                        <li>
+                            <a href=" ">click here</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+/
+    <!-- footer -->
+
+    <!-- firestore / firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+
+    
+    <script src="jquery-3.3.1.min.js"></script>
+
+
+    <script src="app.js "></script>
+    
+    <!-- bootstrap -->
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- bootstrap -->
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title id="pgtitle">AD details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- firestore / firebase -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-messaging.js"></script>
+
+    <!-- bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- bootstrap -->
+    <!-- fontawesone -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+        crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+
+</head>
+
+<body>
+        <nav class="navbar navbar-default" id="navbarr">
+                <div class="container-fluid ">
+                    <div class="navbar-header  ">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+                            <img src="\src\images\olxlogo.png" alt="OLX" height="30px" width="30px" style="display:inline;"></img> Pakistan's Largest Marketplace</a>
+                    </div>
+                    <div class="collapse navbar-collapse " id="myNavbar">
+                        <div id="featurebtn" class="featurebtn">
+                            <ul class="nav navbar-nav">
+                                <li>
+                                    <a href="adlist.html?myads">Your Ads</a>
+                                </li>
+                                <li>
+                                    <a href="adlist.html?favads">Favourite Ad</a>
+                                </li>
+                                <li>
+                                    <a href="recentchat.html">Recent Chat</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="#" id="myaccount" type="button" data-toggle="modal" data-target="#myModal">
+                                    <span class="glyphicon glyphicon-user"></span> My Account
+                                </a>
+                                <!-- Modal -->
+                                <div id="myModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+        
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" id="modal-title" style="text-align:center">LOGIN</h4>
+                                                <div class=" " id="login-div">
+                                                    <input class="form-control margne" id="email1" type="text" placeholder="email">
+                                                    <input class="form-control margne" id="pass1" type="Password" placeholder="password">
+                                                    <button type="button" class="btn btn-default " onClick="login()">Login</button>
+                                                    <a href="javscript:void(0);" onclick="signupformShow()">New user? Register here</a>
+        
+                                                </div>
+                                                <div class=" " style="display:none" id="signin-div">
+                                                    <input class="form-control margne " id="nametext" type="text" placeholder="name">
+                                                    <input class="form-control margne" id="email" type="text" placeholder="email">
+                                                    <input class="form-control margne" id="pass" type="Password" placeholder="password">
+                                                    <button type="button" class="btn btn-default" onClick="Signup()">Signup</button>
+                                                    <a href="javscript:void(0);" onclick="loginformShow()">Already have account? login here</a>
+        
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="contain">
+                                                    <label style="text-align:center; color:red" id="modalerror"> </label>
+                                                </div>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                        <!-- Modal content-->
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javscript:void(0);" onclick="logout()" id="logout-btn">
+                                    <span class="glyphicon glyphicon-log-in"></span> LogOut</a>
+                            </li>
+                            <li>
+                                <a href="adpost.html?">
+                                    <span class="glyphicon glyphicon-log-in"></span> Post Ad</a>
+                            </li>
+        
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        
+            <div id="loader">
+
+                </div>
+
+    <!-- center content  -->
+
+    <div id="detaildivid" class=hidediv>
+        <!-- <div class="container-fluid" style="margin :50px 0;"> -->
+
+                
+        <div class="center-content ">
+            <div>
+                <h4 id="detailTitle" style="display: inline;">Title</h4>
+                <i id="favad" class="favdiv glyphicon glyphicon-heart" ></i>
+            </div>
+            <figure>
+                <img id="detailimg" src="\src\images\SkinnySeveralAsianlion.gif" alt="Nature" class="responsive" width="600" height="400">
+            </figure>
+        </div>
+        <div class="">
+            <div class="details detaildiv container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h5>Name</h5>
+                        <label id="detailName">-------------</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>CITY</h5>
+                        <label id="detailCity">-------------</label>
+
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>Price In Rupees</h5>
+                        <label id="detailPrice">-------------</label>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <h5>Model</h5>
+                        <label id="detailModel">-------------</label>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <h5>Ad Posted on</h5>
+                        <label id="detailDate">-------------</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>Mobile No</h5>
+                        <label id="detailMob">-------------</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <h5>Email</h5>
+                        <label id="detailemail">-------------</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <h5>Category</h5>
+                        <label id="detailcategory">-------------</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <h5>Description</h5>
+                        <label id="detailDescription">-------------</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="container-fluid center-content" id="chatroom">
+                <button id="chatbtn" class=" btn btn-default" onclick="createroom()">
+                    chat with seller
+                </button>
+                
+            </div>
+    </div>
+    
+
+    </div>
+    <!-- footer  -->
+    <div id="detailfoot" class="container-fluid foot footend">
+        <div class="center-content ">
+            <ul class="main-ul">
+                <ul class="sub-ul">
+                    <li>
+                        <img src="\src\images\olxlogo.png" alt="OLX" height="100px" width="100px">
+                    </li>
+                    <li>
+                        <br>
+                    </li>
+                </ul>
+                <li>
+                    <ul class="sub-ul">
+                        <li>
+                            <a href="">Locations Map</a>
+                        </li>
+                        <li>
+                            <a href="">Popular Serches</a>
+                        </li>
+                        <li>
+                            <a href="">Archive</a>
+                        </li>
+                        <li>
+                            <a href="">Sitemap</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul">
+                        <li>
+                            <a href="">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="">Help / Contact us</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul">
+                        <li>
+                            <a href="">Who are we</a>
+                        </li>
+                        <li>
+                            <a href="">Join OLX</a>
+                        </li>
+                        <li>
+                            <a href="">Happy OLXer</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="sub-ul">
+                        <li>Contact US</li>
+                        <li>
+                            <a href="">Help@safh</a>
+                        </li>
+                        <li>
+                            <a href="">03032159234</a>
+                        </li>
+                        <li>
+                            <a href="">Bussiness Packages</a>
+                        </li>
+                        <li>
+                            <a href="">click here</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+    <!-- footer -->
+
+
+</body>
+<script src="app.js"></script>
+
+</html>
